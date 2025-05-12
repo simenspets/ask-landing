@@ -111,14 +111,12 @@ export default function Home() {
   const [prevEffectIdx, setPrevEffectIdx] = useState<number|null>(null);
   const [benefitIdx, setBenefitIdx] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const [direction, setDirection] = useState<'up'|'down'>('up');
 
   // Hero text animation
   useEffect(() => {
     const interval = setInterval(() => {
       setPrevEffectIdx(effectIdx);
       setIsTransitioning(true);
-      setDirection('up');
       setTimeout(() => {
         setEffectIdx((i) => (i + 1) % EFFECTS.length);
         setIsTransitioning(false);
