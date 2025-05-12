@@ -108,32 +108,20 @@ const PRICING = [
 
 export default function Home() {
   const [effectIdx, setEffectIdx] = useState(0);
-  const [prevEffectIdx, setPrevEffectIdx] = useState<number|null>(null);
   const [benefitIdx, setBenefitIdx] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
 
   // Hero text animation
   useEffect(() => {
     const interval = setInterval(() => {
-      setPrevEffectIdx(effectIdx);
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setEffectIdx((i) => (i + 1) % EFFECTS.length);
-        setIsTransitioning(false);
-        setPrevEffectIdx(null);
-      }, 600); // match duration
+      setEffectIdx((i) => (i + 1) % EFFECTS.length);
     }, 3000);
     return () => clearInterval(interval);
-  }, [effectIdx]);
+  }, []);
 
   // Benefits carousel animation
   useEffect(() => {
     const interval = setInterval(() => {
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setBenefitIdx((i) => (i + 1) % BENEFITS.length);
-        setIsTransitioning(false);
-      }, 500);
+      setBenefitIdx((i) => (i + 1) % BENEFITS.length);
     }, 5000);
     return () => clearInterval(interval);
   }, []);
@@ -269,11 +257,7 @@ export default function Home() {
               <button
                 key={index}
                 onClick={() => {
-                  setIsTransitioning(true);
-                  setTimeout(() => {
-                    setBenefitIdx(index);
-                    setIsTransitioning(false);
-                  }, 500);
+                  setBenefitIdx(index);
                 }}
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${
                   index === benefitIdx
