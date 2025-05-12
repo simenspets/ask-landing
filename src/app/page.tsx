@@ -200,32 +200,18 @@ export default function Home() {
         </div>
         <div className="h-[56px] md:h-[80px] flex items-center justify-center mt-[-8px] mb-2 relative overflow-hidden" style={{minHeight:56}}>
           {/* Outgoing and incoming text during transition */}
-          {isTransitioning && prevEffectIdx !== null ? (
-            <>
+          <div className="relative w-full h-full">
+            {EFFECTS.map((effect, index) => (
               <span
-                key={`out-${prevEffectIdx}`}
-                className="block text-5xl md:text-6xl font-extrabold text-[#234034] leading-tight absolute left-0 right-0 transition-all duration-600 ease-linear opacity-0 -translate-y-8 pointer-events-none"
+                key={effect}
+                className={`block text-5xl md:text-6xl font-extrabold text-[#234034] leading-tight absolute left-0 right-0 transition-all duration-700 ease-in-out
+                  ${index === effectIdx ? 'opacity-100 translate-y-0 z-10' : index < effectIdx ? 'opacity-0 -translate-y-full z-0' : 'opacity-0 translate-y-full z-0'}`}
                 style={{minWidth:260}}
               >
-                {EFFECTS[prevEffectIdx]}
+                {effect}
               </span>
-              <span
-                key={`in-${effectIdx}`}
-                className="block text-5xl md:text-6xl font-extrabold text-[#234034] leading-tight absolute left-0 right-0 transition-all duration-600 ease-linear opacity-100 translate-y-0"
-                style={{minWidth:260}}
-              >
-                {EFFECTS[effectIdx]}
-              </span>
-            </>
-          ) : (
-            <span
-              key={`static-${effectIdx}`}
-              className="block text-5xl md:text-6xl font-extrabold text-[#234034] leading-tight"
-              style={{minWidth:260}}
-            >
-              {EFFECTS[effectIdx]}
-            </span>
-          )}
+            ))}
+          </div>
         </div>
         <p className="text-base md:text-lg text-[#234034] mb-8 max-w-xl mx-auto mt-0">
           Revolutionize your online store experience with an interactive product assistant. Set up for your entire store in just 2 minutes.
