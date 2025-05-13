@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
+import FeatureSection from "@/components/FeatureSection";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
@@ -210,66 +211,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Benefits Carousel */}
-      <section id="how" className="w-full bg-[#234034] py-20 px-4 overflow-hidden">
-        <div className="max-w-screen-xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-12">
-            Uncertain visitors <span className="text-[#b6e2d3]">→</span> Paying customers
-          </h2>
-          
-          <div className="relative h-[400px] md:h-[500px]">
-            {BENEFITS.map((benefit, index) => (
-              <div
-                key={benefit.title}
-                className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
-                  index === benefitIdx
-                    ? 'opacity-100 translate-y-0'
-                    : index < benefitIdx
-                    ? 'opacity-0 -translate-y-full'
-                    : 'opacity-0 translate-y-full'
-                }`}
-              >
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center h-full">
-                  <div className="text-white flex flex-col gap-6">
-                    <h3 className="text-2xl md:text-3xl font-bold text-[#b6e2d3] mb-4">
-                      {benefit.title}
-                    </h3>
-                    <p className="text-lg leading-relaxed">
-                      {benefit.description}
-                    </p>
-                  </div>
-                  <div className="flex justify-center items-center">
-                    <img
-                      src={benefit.image}
-                      alt={benefit.title}
-                      className={`rounded-xl shadow-lg max-w-full w-auto max-h-64 md:max-h-80 object-cover transition-opacity transition-transform duration-700 ease-linear
-                        ${index === benefitIdx ? 'opacity-100 translate-y-0 z-10' : 'opacity-0 translate-y-4 z-0'}`}
-                    />
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Carousel Indicators */}
-          <div className="flex justify-center gap-2 mt-8">
-            {BENEFITS.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => {
-                  setBenefitIdx(index);
-                }}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === benefitIdx
-                    ? 'bg-[#b6e2d3] scale-125'
-                    : 'bg-white/30 hover:bg-white/50'
-                }`}
-                aria-label={`Go to slide ${index + 1}`}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Feature Section */}
+      <FeatureSection />
 
       {/* Pricing */}
       <section id="pricing" className="w-full py-20 px-4 bg-[#f6f7f3]">
