@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import FeatureSection from "@/components/FeatureSection";
+import Image from 'next/image';
 
 const EFFECTS = [
   "confident shoppers",
@@ -190,7 +191,13 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
             {TEAM.map((member) => (
               <div key={member.name} className="rounded-2xl bg-[#f6f7f3] border border-[#e2e4dd] shadow-sm p-6 flex flex-col items-center text-center">
-                <img src={member.img} alt={member.name} className="w-24 h-24 rounded-full object-cover mb-4" />
+                <Image 
+                  src={member.img} 
+                  alt={member.name} 
+                  width={96} 
+                  height={96} 
+                  className="rounded-full object-cover mb-4" 
+                />
                 <div className="font-bold text-lg text-[#234034]">{member.name}</div>
                 <div className="text-[#234034] opacity-80 mb-2">{member.role}</div>
                 <div className="text-[#234034] text-sm opacity-80">{member.desc}</div>

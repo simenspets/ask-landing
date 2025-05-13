@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from 'next/image';
 
 const FEATURES = [
   {
@@ -76,9 +77,11 @@ export default function FeatureSection() {
                   transition={{ duration: 0.5, ease: "easeInOut" }}
                   className="absolute inset-0 flex items-center justify-center"
                 >
-                  <img
+                  <Image
                     src={feature.image}
                     alt={feature.title}
+                    width={320}
+                    height={320}
                     className="rounded-xl shadow-lg max-w-full w-auto max-h-64 md:max-h-80 object-cover"
                   />
                 </motion.div>
