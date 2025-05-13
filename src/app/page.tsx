@@ -191,7 +191,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
             {TEAM.map((member) => (
               <div key={member.name} className="rounded-2xl bg-[#f6f7f3] border border-[#e2e4dd] shadow-sm p-6 flex flex-col items-center text-center">
-                <Image 
+          <Image
                   src={member.img} 
                   alt={member.name} 
                   width={96} 
