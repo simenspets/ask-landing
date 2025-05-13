@@ -1,10 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { loadStripe } from "@stripe/stripe-js";
 import FeatureSection from "@/components/FeatureSection";
-
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
 const EFFECTS = [
   "confident shoppers",
