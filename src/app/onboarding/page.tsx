@@ -2,10 +2,8 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { useRouter } from "next/navigation";
 
 export default function OnboardingPage() {
-  const router = useRouter();
   const [currentStep, setCurrentStep] = useState(1);
   const totalSteps = 5;
 

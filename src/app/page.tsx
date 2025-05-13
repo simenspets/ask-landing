@@ -109,21 +109,12 @@ const PRICING = [
 
 export default function Home() {
   const [effectIdx, setEffectIdx] = useState(0);
-  const [benefitIdx, setBenefitIdx] = useState(0);
 
   // Hero text animation
   useEffect(() => {
     const interval = setInterval(() => {
       setEffectIdx((i) => (i + 1) % EFFECTS.length);
     }, 3000);
-    return () => clearInterval(interval);
-  }, []);
-
-  // Benefits carousel animation
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setBenefitIdx((i) => (i + 1) % BENEFITS.length);
-    }, 5000);
     return () => clearInterval(interval);
   }, []);
 
@@ -234,7 +225,7 @@ export default function Home() {
                 {plan.name !== "Enterprise" ? (
                   <button
                     className="rounded-lg px-4 py-2 font-semibold bg-[#234034] text-white hover:bg-[#2e5c4e] transition mt-auto"
-                    onClick={() => handleCheckout(plan.name.toLowerCase())}
+                    onClick={() => window.location.href = "/onboarding"}
                   >
                     {plan.cta}
                   </button>
