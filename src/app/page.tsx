@@ -13,24 +13,6 @@ const EFFECTS = [
   "customer insight",
 ];
 
-const BENEFITS = [
-  {
-    title: "Increased conversion",
-    description: "Ask is an interactive shopping assistant that gives customers confidence. They get answers to all their questions about usage and product care.",
-    image: "/benefit-conversion.png"
-  },
-  {
-    title: "Valuable insights",
-    description: "A modern dashboard gives you access to statistics and KPIs, so you know what your customers actually care about.",
-    image: "/benefit-insights.png"
-  },
-  {
-    title: "Optimize your store",
-    description: "An interactive assistant helps customers find the right product and keeps them engaged with relevant questions and tips.",
-    image: "/benefit-optimize.png"
-  }
-];
-
 const TEAM = [
   {
     name: "Kristoffer Strømdal Wik",
@@ -117,44 +99,6 @@ export default function Home() {
     }, 3000);
     return () => clearInterval(interval);
   }, []);
-
-  async function handleCheckout(plan: string) {
-    try {
-      const res = await fetch("/api/stripe/checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ plan }),
-      });
-      
-      if (!res.ok) {
-        const errorData = await res.json();
-        throw new Error(errorData.error || 'Failed to create checkout session');
-      }
-
-      const { sessionId, error } = await res.json();
-      
-      if (error) {
-        throw new Error(error);
-      }
-
-      if (!sessionId) {
-        throw new Error('No session ID received from server');
-      }
-
-      const stripe = await stripePromise;
-      if (!stripe) {
-        throw new Error('Stripe failed to initialize');
-      }
-
-      const { error: stripeError } = await stripe.redirectToCheckout({ sessionId });
-      if (stripeError) {
-        throw new Error(stripeError.message);
-      }
-    } catch (error) {
-      console.error('Checkout error:', error);
-      alert('Failed to start checkout: ' + (error instanceof Error ? error.message : 'Unknown error'));
-    }
-  }
 
   return (
     <div className="bg-[#f6f7f3] min-h-screen font-sans">
